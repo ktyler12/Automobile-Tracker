@@ -10,12 +10,12 @@ class Cli {
   // TODO: update the vehicles property to accept Truck and Motorbike objects as well
   // TODO: You will need to use the Union operator to define additional types for the array
   // TODO: See the AbleToTow interface for an example of how to use the Union operator
-  vehicles: (Car)[];
+  vehicles: (Car| Truck|Motorbike)[] = [];
   selectedVehicleVin: string | undefined;
   exit: boolean = false;
 
   // TODO: Update the constructor to accept Truck and Motorbike objects as well
-  constructor(vehicles: (Car)[]) {
+  constructor(vehicles: (Car | Truck|Motorbike)[]) {
     this.vehicles = vehicles;
   }
 
@@ -34,7 +34,7 @@ class Cli {
       .prompt([
         {
           type: 'list',
-          name: 'selectedVehicleVin',
+          name: 'selectedVehicle.Vin',
           message: 'Select a vehicle to perform an action on',
           choices: this.vehicles.map((vehicle) => {
             return {
@@ -61,7 +61,7 @@ class Cli {
           name: 'vehicleType',
           message: 'Select a vehicle type',
           // TODO: Update the choices array to include Truck and Motorbike
-          choices: ['Car'],
+          choices: ['Car', 'Truck', 'Motorbike'],
         },
       ])
       .then((answers) => {
